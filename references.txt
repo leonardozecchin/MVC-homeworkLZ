@@ -1,0 +1,4 @@
+https://spring.io/guides/gs/serving-web-content/
+https://spring.io/guides/gs/accessing-data-jpa/
+https://docs.spring.io/spring/docs/current/javadoc-api/
+https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#building-uris-to-controllers
