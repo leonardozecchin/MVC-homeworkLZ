@@ -51,13 +51,10 @@ public class AppController {
             @RequestParam(name="id", required=true) Long id,
             Model model) {
         Optional<Person> result = repository.findById(id);
-        //TODO: check if the result is found,
         if(result.isPresent()){
-            //TODO: put data in the model field to be displayed in the page
             model.addAttribute("person",result.get());
             return "/show";
         }
-        //TODO: in case no data is found, display the "notfound" page
         return "/notfound";
     }
 
@@ -68,14 +65,12 @@ public class AppController {
             @RequestParam(name="id", required=true) Long id,
             Model model) {
         Optional<Person> result = repository.findById(id);
-        //TODO: check if the result is found
         if(result.isPresent()){
-            //TODO: put data in the model field to be displayed in the next page to edit them
             model.addAttribute("person",result.get());
             return "edit";
         }
         else{ return  "notfound"; }
-        //TODO: in case no data is found, display the "notfound" page
+
     }
 
     @RequestMapping("/update")
@@ -85,7 +80,6 @@ public class AppController {
             @RequestParam(name="lastname", required=true) String lastname,
             Model model) {
         Optional<Person> result = repository.findById(id);
-        //TODO: check if the result is found
         if(result.isPresent()){
             repository.delete(result.get());
             repository.save(new Person(firstname,lastname));
