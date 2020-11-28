@@ -52,9 +52,13 @@ public class AppController {
             Model model) {
         Optional<Person> result = repository.findById(id);
         //TODO: check if the result is found,
-        //TODO: put data in the model field to be displayed in the page
-        return "show";
+        if(result.isPresent()){
+            //TODO: put data in the model field to be displayed in the page
+            model.addAttribute("person",result.get());
+            return "/show";
+        }
         //TODO: in case no data is found, display the "notfound" page
+        return "/notfound";
     }
 
 
@@ -65,8 +69,12 @@ public class AppController {
             Model model) {
         Optional<Person> result = repository.findById(id);
         //TODO: check if the result is found
-        //TODO: put data in the model field to be displayed in the next page to edit them
-        return "edit";
+        if(result.isPresent()){
+            //TODO: put data in the model field to be displayed in the next page to edit them
+            model.addAttribute("person",result.get());
+            return "edit";
+        }
+        else{ return  "notfound"; }
         //TODO: in case no data is found, display the "notfound" page
     }
 
@@ -76,20 +84,31 @@ public class AppController {
             @RequestParam(name="firstname", required=true) String firstname,
             @RequestParam(name="lastname", required=true) String lastname,
             Model model) {
+        Optional<Person> result = repository.findById(id);
         //TODO: check if the result is found
-        //TODO: delete the old person and add a new person
-        return "redirect:/list";
-        //TODO: in case no data is found, display the "notfound" page
+        if(result.isPresent()){
+            repository.delete(result.get());
+            repository.save(new Person(firstname,lastname));
+            return "redirect:/list";
+        }
+        else{
+            return "notfound";
+        }
     }
 
 
     @RequestMapping("/delete")
     public String delete(
             @RequestParam(name="id", required=true) Long id) {
-        //TODO: check if the result is found
-        //TODO: delete the old person and add a new person
-        return "redirect:/list";
-        //TODO: in case no data is found, display the "notfound" page
+        Optional<Person> result = repository.findById(id);
+        if(result.isPresent()){
+            repository.delete(result.get());
+            return "redirect:/list";
+            //I didn't implement the 'add new person' for me it is not necessery in this case
+        }
+        else{
+            return "notfound";
+        }
     }
 
 }

@@ -7,11 +7,13 @@
 
 <body>
 <h1>Detail of person:</h1>
-<div>TODO: implement show details </div>
+<b>Id:</b><div th:text = "${person.id}">Id:</div>
+<b>Name:</b><div th:text = "${person.firstName}">Name:</div>
+<b>Surname:</b><div th:text = "${person.lastName}">Surname:</div>
 
-<a href=""> edit </a><br>
-<a href=""> delete </a><br>
-<a href="list"> Show the list </a>
+<a href="edit?id=10" th:href="@{edit(id=${person.id})}"> edit </a><br>
+<a href="delete?id=10" th:href="@{delete(id=${person.id})}"> delete </a><br>
+<a href="list"> Show the list </a><br>
 
 </body>
 </html>

@@ -9,11 +9,16 @@
 <h1>Edit a record</h1>
 
 <form action="update" method="post">
-    <div>TODO: display all the data in text fields</div>
+    <b>Actual Id:</b><div th:text = "${person.id}">Id</div>
+    <b>write Same Id:</b><input type="text" name="id"><br>
+    <b>Actual Name:</b><div th:text = "${person.firstName}">Name</div>
+    <b>New Name:</b><input type="text" name="firstname"><br>
+    <b>Actual Surname:</b><div th:text = "${person.lastName}">Surname</div>
+    <b>New Surname:</b><input type="text" name="lastname"><br>
     <input type="submit" />
 </form>
 
-<a href="list"> Show the list </a>
+<a href="show?id=10" th:href="@{show(id=${person.id})}"> show </a>
 
 </body>
 </html>
