@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>People list</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>show</th>
+        <th>edit</th>
+        <th>delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person: ${people}">
+        <td th:text="${person.id}"> <b>10 </b></td>
+        <td th:text="${person.firstName}"> John </td>
+        <td th:text="${person.lastName}"> Smith </td>
+        <td> <a href="show?id=10" th:href="@{show(id=${person.id})}"> show </a></td>
+        <td> <a href="edit?id=10" th:href="@{edit(id=${person.id})}"> edit </a></td>
+        <td> <a href="delete?id=10" th:href="@{delete(id=${person.id})}"> delete </a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="input"> Add new person </a>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Edit a record</h1>
+
+<form action="update" method="post">
+    <b>Actual Id:</b><div th:text = "${person.id}">Id</div>
+    <b>write Same Id:</b><input type="text" name="id"><br>
+    <b>Actual Name:</b><div th:text = "${person.firstName}">Name</div>
+    <b>New Name:</b><input type="text" name="firstname"><br>
+    <b>Actual Surname:</b><div th:text = "${person.lastName}">Surname</div>
+    <b>New Surname:</b><input type="text" name="lastname"><br>
+    <input type="submit" />
+</form>
+
+<a href="show?id=10" th:href="@{show(id=${person.id})}"> show </a>
+
+</body>
+</html>

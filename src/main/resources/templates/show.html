@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Detail of person:</h1>
+<b>Id:</b><div th:text = "${person.id}">Id:</div>
+<b>Name:</b><div th:text = "${person.firstName}">Name:</div>
+<b>Surname:</b><div th:text = "${person.lastName}">Surname:</div>
+
+<a href="edit?id=10" th:href="@{edit(id=${person.id})}"> edit </a><br>
+<a href="delete?id=10" th:href="@{delete(id=${person.id})}"> delete </a><br>
+<a href="list"> Show the list </a><br>
+
+</body>
+</html>
