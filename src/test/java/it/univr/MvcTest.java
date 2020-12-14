@@ -45,4 +45,37 @@ public class MvcTest {
 
     }
 
+    @Test
+    public void personOperationTest(){
+        tester.beginAt("/list");
+        tester.clickLinkWithText("Add new person");
+
+        tester.assertTextPresent("Create a new record"); // serve per controllare se nella pagina in cui mi trovo c'è quel testo li
+        tester.setTextField("firstname","Leonardo");
+        tester.setTextField("lastname","Zecchin");
+        tester.submit();
+
+        tester.assertTextPresent("People List");
+        tester.assertLinkPresentWithText("edit");
+        tester.assertLinkPresentWithText("show");
+        tester.assertLinkPresentWithText("delete");
+    }
+
+    @Test
+    public void personDeleteTest(){
+        tester.beginAt("/list");
+        tester.clickLinkWithText("Add new person");
+
+        tester.assertTextPresent("Create a new record"); // serve per controllare se nella pagina in cui mi trovo c'è quel testo li
+        tester.setTextField("firstname","Leonardo");
+        tester.setTextField("lastname","Zecchin");
+        tester.submit();
+
+        tester.assertTextPresent("People List");
+        int before =  tester.getElementsByXPath("//td").size();
+        tester.clickLinkWithText("delete");
+        int after =  tester.getElementsByXPath("//td").size();
+        Assert.assertTrue(after < before);
+    }
+
 }
